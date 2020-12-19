@@ -11,7 +11,16 @@ export default class SmartRefresh extends React.PureComponent{
     constructor(props) {
         super(props);
     }
-
+    static propTypes = {
+        style:PropTypes.object,
+        onRefreshing:PropTypes.func,
+        refreshing:PropTypes.bool,
+    }
+    static defaultProps = {
+        style:{flex:1},
+        onRefreshing:()=>{},
+        refreshing:false,
+    }
     render() {
         const {children} = this.props;
         return (
@@ -28,16 +37,6 @@ export default class SmartRefresh extends React.PureComponent{
     }
 }
 
-SmartRefresh.prototype={
-    style:PropTypes.object,
-    onRefreshing:PropTypes.func,
-    refreshing:PropTypes.bool,
-}
-SmartRefresh.defaultProps={
-    styles:styles.container,
-    onRefreshing:()=>{},
-    refreshing:false,
-}
 const styles = StyleSheet.create({
     container:{
         flex:1
