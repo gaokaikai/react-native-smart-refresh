@@ -22,7 +22,6 @@ import com.facebook.react.uimanager.ViewManager;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.facebook.react.uimanager.events.ReactEventEmitter;
-import com.jchat.R;
 import com.scwang.smart.refresh.footer.ClassicsFooter;
 import com.scwang.smart.refresh.header.ClassicsHeader;
 import com.scwang.smart.refresh.layout.SmartRefreshLayout;
@@ -39,10 +38,10 @@ import java.util.Map;
 
 import static com.facebook.react.views.textinput.ReactTextInputManager.TAG;
 
-public class RNSmartRefreshManager extends ViewGroupManager<SmartRefreshLayout> {
+public class SmartRefreshManager extends ViewGroupManager<SmartRefreshLayout> {
     public static final String REACT_CLASS = "RNSmartRefreshView";
-//    刷新
-    public static final String EVETN_NAME_ONREFRESH = "onRefresh";
+    //    刷新
+    public static final String EVETN_NAME_ONREFRESH = "onRefreshing";
 
     ReactApplicationContext mCallerContext;
 
@@ -54,7 +53,7 @@ public class RNSmartRefreshManager extends ViewGroupManager<SmartRefreshLayout> 
     public String getName() {
         return REACT_CLASS;
     }
-//    初始化
+    //    初始化
     @Override
     public SmartRefreshLayout createViewInstance(ThemedReactContext context) {
         final SmartRefreshLayout smartrefresh = new SmartRefreshLayout(context);
@@ -79,9 +78,9 @@ public class RNSmartRefreshManager extends ViewGroupManager<SmartRefreshLayout> 
         });
 
     }
-//    监听事件 下拉
+    //    监听事件 下拉
     @Override
-    protected void addEventEmitters(@NonNull ThemedReactContext reactContext, @NonNull SmartRefreshLayout view) {
+    protected void addEventEmitters(final ThemedReactContext reactContext, final SmartRefreshLayout view) {
         view.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(@NonNull RefreshLayout refreshLayout) {

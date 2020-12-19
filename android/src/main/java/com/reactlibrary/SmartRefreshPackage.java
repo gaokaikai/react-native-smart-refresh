@@ -1,6 +1,7 @@
 package com.reactlibrary;
 
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class SmartRefreshPackage implements ReactPackage {
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         List<ViewManager> views = new ArrayList<>();
-        views.add(new RNSmartRefreshManager(reactContext));
+        views.add(new SmartRefreshManager(reactContext));
         return views;
     }
 }
