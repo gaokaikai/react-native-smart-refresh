@@ -45,7 +45,7 @@ public class SmartRefreshManager extends ViewGroupManager<SmartRefreshLayout> {
 
     ReactApplicationContext mCallerContext;
 
-    public RNSmartRefreshManager(ReactApplicationContext reactContext) {
+    public SmartRefreshManager(ReactApplicationContext reactContext) {
         mCallerContext = reactContext;
     }
     //返回名字
