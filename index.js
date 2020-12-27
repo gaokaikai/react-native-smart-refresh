@@ -3,40 +3,62 @@ import {
     View,
     Text,
     requireNativeComponent,
-    StyleSheet, ScrollView,
+    StyleSheet, ScrollView,Platform
 } from 'react-native';
 import PropTypes from 'prop-types';
 const RNSmartRefresh = requireNativeComponent('RNSmartRefreshView');
-export default class SmartRefresh extends React.PureComponent{
+const RNSmartRefreshHeader = requireNativeComponent('RNRefreshHeader');
+import RefreshAnimateHeader from "./src/RefreshAnimateHeader";
+import RefreshNormalHeader from "./src/RefreshNormalHeader";
+
+export class SmartRefresh extends React.PureComponent{
     constructor(props) {
         super(props);
     }
     static propTypes = {
         style:PropTypes.object,
-        onRefreshing:PropTypes.func,
+        onRefresh:PropTypes.func,
+        onChangeState:PropTypes.func,
+        onChangeOffset:PropTypes.func,
         refreshing:PropTypes.bool,
     }
     static defaultProps = {
-        style:{flex:1},
-        onRefreshing:()=>{},
+        style:Platform.OS==='android'?{flex:1}:{position:'absolute',left:0,top:0,right:0},
+        onRefresh:()=>{},
+        onChangeOffset:()=>{},
         refreshing:false,
     }
     render() {
         const {children} = this.props;
         return (
-            <RNSmartRefresh
+                    <RNSmartRefresh
+                        {...this.props}
+                    >
+                        {children}
+                    </RNSmartRefresh>
+        );
+    }
+}
+export class SmartRefreshHeader extends React.PureComponent{
+    constructor(props) {
+        super(props);
+    }
+    render() {
+        const {children} = this.props;
+        return (
+            <RNSmartRefreshHeader
                 {...this.props}
             >
-                <View
-                    style={styles.container}
-                >
-                    {children}
-                </View>
-            </RNSmartRefresh>
+                   {children}
+            </RNSmartRefreshHeader>
         );
     }
 }
 
+export {
+    RefreshNormalHeader,
+    RefreshAnimateHeader
+}
 const styles = StyleSheet.create({
     container:{
         flex:1

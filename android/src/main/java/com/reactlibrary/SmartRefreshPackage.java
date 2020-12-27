@@ -20,7 +20,8 @@ public class SmartRefreshPackage implements ReactPackage {
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         List<ViewManager> views = new ArrayList<>();
-        views.add(new SmartRefreshManager(reactContext));
+        views.add(new SmartRefreshManager());
+        views.add(new RCTRefreshHeaderManager());
         return views;
     }
 }
