@@ -30,12 +30,25 @@ export class SmartRefresh extends React.PureComponent{
     }
     render() {
         const {children} = this.props;
-        return (
+        if(Platform.OS=='android'){
+            return (
+                <View
+                    style={{flex:1,overflow:'hidden'}}
+                >
                     <RNSmartRefresh
                         {...this.props}
                     >
                         {children}
                     </RNSmartRefresh>
+                </View>
+            )
+        }
+        return (
+            <RNSmartRefresh
+                {...this.props}
+            >
+                {children}
+            </RNSmartRefresh>
         );
     }
 }
