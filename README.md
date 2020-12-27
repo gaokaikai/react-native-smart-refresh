@@ -10,8 +10,12 @@
 
 ## Usage
 ```javascript
-import SmartRefresh from 'react-native-smart-refresh';
+import {RefreshAnimateHeader} from 'react-native-smart-refresh';
 
 // TODO: What to do with the module?
-SmartRefresh;
+// 使用方法
+ refreshControl={<RefreshAnimateHeader
+                   refreshing={this.state.refreshing}
+                   onRefresh={this.onRefresh}
+               ></RefreshAnimateHeader>}
 ```
