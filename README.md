@@ -1,8 +1,12 @@
 # react-native-smart-refresh
 
+##使用预览
+![image](https://gitee.com/gaokai1101731946/react-native-smart-refresh/blob/master/example/lottie.gif)
+![image](https://gitee.com/gaokai1101731946/react-native-smart-refresh/blob/master/example/normal.gif)
+
 ## Getting started
 
-`$ npm install react-native-smart-refresh --save`
+`$ yarn add react-native-smart-refresh`
 
 ### Mostly automatic installation
 
