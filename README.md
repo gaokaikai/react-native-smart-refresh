@@ -1,7 +1,9 @@
 # react-native-smart-refresh
 
-##使用预览
+## 使用预览
+
 ![image](https://github.com/gaokaikai/react-native-smart-refresh/blob/master/example/lottie.gif)
+
 ![image](https://github.com/gaokaikai/react-native-smart-refresh/blob/master/example/normal.gif)
 
 ## Getting started
