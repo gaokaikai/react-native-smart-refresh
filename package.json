@@ -10,7 +10,8 @@
     "index.js",
     "ios",
     "react-native-smart-refresh.podspec",
-    "src"
+    "src",
+    "example"
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
