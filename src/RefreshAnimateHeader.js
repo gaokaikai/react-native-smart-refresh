@@ -1,18 +1,20 @@
 'use strict';
-import React, { useRef, useCallback, useMemo } from 'react';
+import React, { useRef, useCallback, useMemo,useState } from 'react';
 import { StyleSheet, Animated, Platform, RefreshControl,View } from 'react-native';
 import LottieView from 'lottie-react-native';
 import {SmartRefresh,SmartRefreshHeader} from "../index";
+import {AnimatedValue} from "react-native-reanimated";
 
 function RefreshAnimateHeader(props) {
-  const { refreshing, onRefresh=()=>{}, source } = props;
+  const { refreshing, onRefresh=()=>{}, source='' } = props;
 
   const lottieRef = useRef(React.createRef());
-
+  let offsetValue = new Animated.Value(0);
+  let [currentState,setCurrentState] = useState(0);
   const onRefreshCallBack = useCallback(
     (state) => {
         lottieRef.current?.play();
-      onRefresh(state);
+        onRefresh(state);
     },
     [onRefresh],
   );
@@ -22,6 +24,7 @@ function RefreshAnimateHeader(props) {
   }, []);
   const onChangeStateCallBack = useCallback((event) => {
     const { state } = event.nativeEvent;
+    setCurrentState(state);
     switch (state) {
       case 0:
           onIdleRefreshCallBack();
@@ -33,10 +36,19 @@ function RefreshAnimateHeader(props) {
 
     }
   }, []);
+  const onChangeOffsetCallBack = useCallback((event)=>{
+    const { offset } = event.nativeEvent;
+
+    if(currentState==0 || currentState==1){
+      offsetValue.setValue(offset);
+        console.log(offset,"偏移")
+    }
+  });
   return (
     <SmartRefresh
       refreshing={refreshing}
       onChangeState={onChangeStateCallBack}
+      onChangeOffset={onChangeOffsetCallBack}
     >
         <SmartRefreshHeader
           style={styles.container}
@@ -49,9 +61,13 @@ function RefreshAnimateHeader(props) {
               autoSize={false}
               autoPlay={false}
               speed={2}
-              source={require('./assets/cycle_animation.json')}
+              source={source || require('./assets/cycle_animation.json')}
               hardwareAccelerationAndroid={true}
               cacheStrategy={'strong'}
+              progress={offsetValue.interpolate({
+                inputRange:[0,300],
+                outputRange:[0,1],
+              })}
           />
         </SmartRefreshHeader>
       {props.children}

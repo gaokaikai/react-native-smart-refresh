@@ -23,5 +23,6 @@ import {RefreshAnimateHeader} from 'react-native-smart-refresh';
  refreshControl={<RefreshAnimateHeader
                    refreshing={this.state.refreshing}
                    onRefresh={this.onRefresh}
+                    source={require('../../../lib/lottie/41420-pending.json')}
                ></RefreshAnimateHeader>}
 ```
