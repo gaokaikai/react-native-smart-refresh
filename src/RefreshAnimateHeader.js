@@ -41,7 +41,6 @@ function RefreshAnimateHeader(props) {
 
     if(currentState==0 || currentState==1){
       offsetValue.setValue(offset);
-        console.log(offset,"偏移")
     }
   });
   return (
