@@ -3,7 +3,6 @@ import React, { useRef, useCallback, useMemo,useState } from 'react';
 import { StyleSheet, Animated, Platform, RefreshControl,View } from 'react-native';
 import LottieView from 'lottie-react-native';
 import {SmartRefresh,SmartRefreshHeader} from "../index";
-import {AnimatedValue} from "react-native-reanimated";
 
 function RefreshAnimateHeader(props) {
   const { refreshing, onRefresh=()=>{}, source='' } = props;
