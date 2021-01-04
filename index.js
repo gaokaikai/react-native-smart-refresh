@@ -57,12 +57,14 @@ export class SmartRefreshHeader extends React.PureComponent{
         super(props);
     }
     render() {
-        const {children} = this.props;
+        const {children,style} = this.props;
         return (
-            <RNSmartRefreshHeader
-                {...this.props}
-            >
-                   {children}
+            <RNSmartRefreshHeader>
+                   <View
+                    style={StyleSheet.compose({height:100},style)}
+                   >
+                       {children}
+                   </View>
             </RNSmartRefreshHeader>
         );
     }
