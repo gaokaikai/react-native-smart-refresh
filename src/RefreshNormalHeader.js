@@ -106,7 +106,7 @@ function NormalRefreshHeader(props) {
 
 const styles = StyleSheet.create({
   container: {
-    height: 80,
+    // height: 80,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',

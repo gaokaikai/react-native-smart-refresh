@@ -75,7 +75,7 @@ function RefreshAnimateHeader(props) {
 
 const styles = StyleSheet.create({
   container: {
-    height: 80,
+    // height: 80,
     justifyContent: 'center',
     alignItems: 'center',
   },
