@@ -11,7 +11,7 @@ import Dayjs from 'dayjs';
 import {SmartRefresh,SmartRefreshHeader} from "../index";
 
 function NormalRefreshHeader(props) {
-  const { refreshing, onRefresh,children } = props;
+  const { refreshing, onRefresh, children, activityIndicatorProps, arrowIcon, containerStyle, titleStyle, timeStyle, leftContainerStyle, rightContainerStyle, imageStyle } = props;
 
   const [title, setTitle] = useState('下拉刷新');
   const [lastTime, setLastTime] = useState(Dayjs().format('HH:mm'));
@@ -67,13 +67,14 @@ function NormalRefreshHeader(props) {
       onChangeState={onChangeStateCallBack}
     >
       <SmartRefreshHeader
-          style={styles.container}
+        style={[styles.container, { ...containerStyle }]}
       >
-        <View style={styles.leftContainer}>
+        <View style={[styles.leftContainer, {...leftContainerStyle}]}>
           <Animated.Image
               style={[
                 styles.image,
                 {
+                  ...imageStyle,
                   opacity: refreshing ? 0 : 1,
                   transform: [
                     {
@@ -85,18 +86,19 @@ function NormalRefreshHeader(props) {
                   ],
                 },
               ]}
-              source={require('./assets/icon_down_arrow.png')}
+              source={ arrowIcon || require('./assets/icon_down_arrow.png')}
           />
           <ActivityIndicator
               style={{ opacity: refreshing ? 1 : 0 }}
               animating={true}
               size="small"
               hidesWhenStopped={true}
+              {...activityIndicatorProps}
           />
         </View>
-        <View style={styles.rightContainer}>
-          <Text style={styles.titleStyle}>{title}</Text>
-          <Text style={styles.timeStyle}>{`最后更新：${lastTime}`}</Text>
+        <View style={[styles.rightContainer,{...rightContainerStyle}]}>
+          <Text style={[ styles.titleStyle, { ...titleStyle }] }>{title}</Text>
+          <Text style={[ styles.timeStyle, { ...timeStyle }] }>{`最后更新：${lastTime}`}</Text>
         </View>
       </SmartRefreshHeader>
       {children}
